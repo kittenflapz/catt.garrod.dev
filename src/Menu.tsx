@@ -1,5 +1,5 @@
-import React, { Dispatch, ReactElement, SetStateAction } from 'react'
-import { Flex } from 'theme-ui'
+import React, { Dispatch, ReactElement, SetStateAction, useState } from 'react'
+import { Flex, Text } from 'theme-ui'
 
 export enum Section {
     ABOUT_ME = 'ABOUT_ME',
@@ -15,28 +15,56 @@ export default function Menu({
     selectedSection,
     setSelectedSection,
 }: MenuProps): ReactElement {
+    const [isOpen, setIsOpen] = useState(true)
+
     return (
-        <Flex
-            sx={{
-                width: '16rem',
-                left: 0,
-                height: '100%',
-                color: 'white',
-                justifyContent: 'center',
-                borderRadius: '0 30px 30px 0',
-                backgroundColor: '#88AF7F',
-            }}
-        >
-            <Flex sx={{ flexDirection: 'column' }}>
-                {Object.keys(Section).map((section, index) => (
-                    <MenuItem
-                        key={index}
-                        section={section}
-                        setSelectedSection={setSelectedSection}
-                        isSelected={selectedSection === section}
-                    />
-                ))}
+        <Flex>
+            <Flex
+                sx={{
+                    left: isOpen ? 0 : '-16rem',
+                    width: '16rem',
+                    height: '100%',
+                    color: 'white',
+                    justifyContent: 'center',
+                    borderRadius: '0 30px 30px 0',
+                    backgroundColor: '#88AF7F',
+                    position: 'absolute',
+                    transition: 'left .5s ease-in-out',
+                }}
+            >
+                <Flex
+                    sx={{
+                        flexDirection: 'column',
+                    }}
+                >
+                    {Object.keys(Section).map((section, index) => (
+                        <MenuItem
+                            key={index}
+                            section={section}
+                            setSelectedSection={setSelectedSection}
+                            isSelected={selectedSection === section}
+                        />
+                    ))}
+                </Flex>
             </Flex>
+            <Flex
+                sx={{
+                    position: 'relative',
+                    width: '2rem',
+                    height: '2rem',
+                    left: isOpen ? '16rem' : 0,
+                    mt: '.4rem',
+                    ml: '.4rem',
+                    transition: 'left .5s ease-in-out',
+                    fontSize: '2rem',
+                    cursor: 'pointer',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                }}
+                onClick={() => {
+                    setIsOpen(isOpen => !isOpen)
+                }}
+            />
         </Flex>
     )
 }
