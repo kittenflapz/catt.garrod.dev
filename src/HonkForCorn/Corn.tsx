@@ -10,8 +10,6 @@ export default function Corn({
     setShouldPlay: Dispatch<SetStateAction<boolean>>
 }): ReactElement {
     const cornimation = (rotationDegree: number): string => {
-        console.log(rotationDegree)
-
         return keyframes`
     from {
       transform: rotate(-30deg) scale(0);
