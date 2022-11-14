@@ -15,27 +15,51 @@ function App() {
         Section.ABOUT_ME
     )
     return (
-        <Flex
-            sx={{
-                width: '100%',
-                height: '100vh',
-            }}
-        >
-            <Menu
-                setSelectedSection={setSelectedSection}
-                selectedSection={selectedSection}
-            />
+        <>
             <Flex
                 sx={{
                     width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    height: '100vh',
                 }}
             >
-                {selectedSection === Section.ABOUT_ME && <AboutMe />}
-                {selectedSection === Section.HONK_FOR_CORN && <HonkForCorn />}
+                <Flex
+                    sx={{
+                        display: ['flex', 'none'],
+                        width: '100%',
+                        height: '100vh',
+                        color: 'white',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    mobile view under construction ❤
+                </Flex>
+                <Flex
+                    sx={{
+                        display: ['none', 'flex'],
+                        width: '100%',
+                        height: '100vh',
+                    }}
+                >
+                    <Menu
+                        setSelectedSection={setSelectedSection}
+                        selectedSection={selectedSection}
+                    />
+                    <Flex
+                        sx={{
+                            width: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        {selectedSection === Section.ABOUT_ME && <AboutMe />}
+                        {selectedSection === Section.HONK_FOR_CORN && (
+                            <HonkForCorn />
+                        )}
+                    </Flex>
+                </Flex>
             </Flex>
-        </Flex>
+        </>
     )
 }
 

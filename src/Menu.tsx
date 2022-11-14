@@ -28,8 +28,9 @@ export default function Menu({
             }}
         >
             <Flex sx={{ flexDirection: 'column' }}>
-                {Object.keys(Section).map(section => (
+                {Object.keys(Section).map((section, index) => (
                     <MenuItem
+                        key={index}
                         section={section}
                         setSelectedSection={setSelectedSection}
                         isSelected={selectedSection === section}
